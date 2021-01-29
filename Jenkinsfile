@@ -2,7 +2,7 @@
 pipeline {
     agent any
     tools {
-        jdk 'openjdk-11'
+        jdk 'openjdk-15.0.2'
     }
     options {
         ansiColor('xterm')
