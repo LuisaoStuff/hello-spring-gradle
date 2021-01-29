@@ -14,6 +14,11 @@ pipeline {
                     sh './gradlew assemble'
                 }
             }
+            post {
+                success {
+                    archiveArtifacts artifacts: 'build/libs/*.jar'
+                }
+            }
         }
         stage('Test') {
             steps {
@@ -22,5 +27,11 @@ pipeline {
                 }
             }
         }
+        post {
+            always {
+                junit 'build/test-results/test/TEST-*.xml'
+            }
+        }
+        
     }
 }
