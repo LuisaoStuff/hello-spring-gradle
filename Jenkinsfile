@@ -29,7 +29,7 @@ pipeline {
             post {
                 always {
                     archiveArtifacts artifacts: 'build/reports/pitest/mutations.xml'
-//                    junit 'build/reports/pitest/mutations.xml'
+                    junit 'build/reports/pitest/mutations.xml'
                 }
             }
         }       
