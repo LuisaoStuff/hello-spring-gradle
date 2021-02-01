@@ -23,12 +23,12 @@ pipeline {
         stage('Test') {
             steps {
                 withGradle {
-                    sh './gradlew test'
+                    sh './gradlew pitest'
                 }
             }
             post {
                 always {
-                    junit 'build/test-results/test/TEST-*.xml'
+                    junit ' build/reports/pitest/mutations.xml'
                 }
             }
         }       
