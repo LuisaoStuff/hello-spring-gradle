@@ -20,7 +20,7 @@ pmd {
     consoleOutput = true
     toolVersion = "6.21.0"
     ignoreFailures = true
-    ruleSets = ["build/pmd.xml"]
+    ruleSets = ["config/pmd/pmd.xml"]
 }
 
 
