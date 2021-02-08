@@ -10,6 +10,7 @@ plugins {
 
 spotbugs {
   toolVersion = '4.2.1'
+  includeFilter = file("config/spotbugs/include.xml")
 }
 
 spotbugsTest {
