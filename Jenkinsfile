@@ -37,6 +37,11 @@ pipeline {
 //                        enabledForFailure: true, 
                         tool: spotBugs(pattern: 'build/reports/spotbugs/*.xml')
                     )
+                    recordIssues (
+                        enabledForFailure: true, 
+                        tool: pmdParser(pattern: 'build/reports/pmd/*.xml')
+                    )
+
                 }
             }
         }       
