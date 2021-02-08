@@ -14,6 +14,17 @@ pitest {
     junit5PluginVersion = '0.12'
 }
 
+
+
+pmd {
+    consoleOutput = true
+    toolVersion = "6.21.0"
+    ignoreFailures = true
+    ruleSets = ["build/pmd.xml"]
+}
+
+
+
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
