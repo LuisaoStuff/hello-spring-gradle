@@ -10,11 +10,18 @@ plugins {
 
 spotbugs {
   toolVersion = '4.2.1'
-  includeFilter = file("config/spotbugs/filter.xml")
+//  includeFilter = file("config/spotbugs/filter.xml")
 }
 
 spotbugsTest {
     ignoreFailures = true
+    reports {
+        html {
+            enabled = true
+            destination = file("$buildDir/reports/spotbugs/test/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
 }
 
 spotbugsMain {
