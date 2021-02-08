@@ -5,45 +5,22 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
-/*
-        stage('Build') {
+
+        stage('QA') {
             steps {
                 withGradle {
-                    sh './gradlew assemble'
+                    sh './gradlew check'
                 }
-            }
-            post {
-                success {
-                    archiveArtifacts artifacts: 'build/libs/*.jar'
-                }
-            }
-        }
-*/
-        stage('Test') {
-            steps {
-                withGradle {
-//                    sh './gradlew pitest'
-//                    sh './gradlew clean pmdTest'
-                    sh './gradlew clean check'
-//                    sh './gradlew spotbugsMain'
-//                    sh './gradlew spotbugsTest'
+                withSonarQubeEnv(credentialsId: 'a821f47c-66dd-4888-859c-90d41bcf26b6', installationName: 'Sonarqube') {
+                    sh './gradlew sonarqube'
                 }
             }
             post {
                 always {
-//                    archiveArtifacts artifacts: 'build/reports/pitest/mutations.xml'
-//                    junit 'build/reports/pitest/mutations.xml'
-                    recordIssues (
-//                        enabledForFailure: true, 
-                        tool: spotBugs(pattern: 'build/reports/spotbugs/*.xml')
-                    )
-                    recordIssues (
-                        enabledForFailure: true, 
-                        tool: pmdParser(pattern: 'build/reports/pmd/*.xml')
-                    )
-
+                    recordIssues enabledForFailure: true, tool: spotBugs(pattern: 'build/reports/spotbugs/*.xml')
+                    recordIssues enabledForFailure: true, tool: pmdParser(pattern: 'build/reports/pmd/*.xml')
                 }
-            }
-        }       
+            }       
+        }
     }
 }
