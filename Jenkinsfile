@@ -8,28 +8,35 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
+/*
         stage('Build') {
             steps {
                 withGradle {
                     sh './gradlew assemble'
                 }
             }
-//            post {
-//                success {
-//                    archiveArtifacts artifacts: 'build/libs/*.jar'
-//                }
-//            }
+            post {
+                success {
+                    archiveArtifacts artifacts: 'build/libs/*.jar'
+                }
+            }
         }
+*/
         stage('Test') {
             steps {
                 withGradle {
-                    sh './gradlew pitest'
+//                    sh './gradlew pitest'
+                    sh './gradlew clean pmdTest'
                 }
             }
             post {
                 always {
-                    archiveArtifacts artifacts: 'build/reports/pitest/mutations.xml'
-                    junit 'build/reports/pitest/mutations.xml'
+//                    archiveArtifacts artifacts: 'build/reports/pitest/mutations.xml'
+//                    junit 'build/reports/pitest/mutations.xml'
+                    recordIssues (
+                        enabledForFailure: true, 
+                        tool: pmdParser(pattern: 'build/pmd.xml'
+                    )
                 }
             }
         }       
