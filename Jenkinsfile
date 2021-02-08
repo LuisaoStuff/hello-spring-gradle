@@ -37,7 +37,7 @@ pipeline {
 //                    junit 'build/reports/pitest/mutations.xml'
                     recordIssues (
                         enabledForFailure: true, 
-                        tool: pmdParser(pattern: 'build/reports/pmd/*.xml')
+                        tool: spotbugs(pattern: 'build/reports/spotbugs/*.xml')
                     )
                 }
             }

@@ -4,6 +4,31 @@ plugins {
 	id 'java'
 	id 'info.solidsoft.pitest' version '1.5.1'
 	id 'pmd'
+	id 'com.github.spotbugs' version '4.2.1'
+}
+
+
+spotbugs {
+  toolVersion = '4.2.1'
+}
+
+spotbugsTest {
+    ignoreFailures = true
+}
+
+spotbugsMain {
+    ignoreFailures = true
+    reports {
+        html {
+            enabled = true
+            destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+
+dependencies {
+	spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.10.1'
 }
 
 pitest {
