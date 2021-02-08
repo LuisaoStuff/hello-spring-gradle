@@ -15,24 +15,10 @@ spotbugs {
 
 spotbugsTest {
     ignoreFailures = true
-    reports {
-        html {
-            enabled = true
-            destination = file("$buildDir/reports/spotbugs/test/spotbugs.html")
-            stylesheet = 'fancy-hist.xsl'
-        }
-    }
 }
 
 spotbugsMain {
     ignoreFailures = true
-    reports {
-        html {
-            enabled = true
-            destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
-            stylesheet = 'fancy-hist.xsl'
-        }
-    }
 }
 
 dependencies {
