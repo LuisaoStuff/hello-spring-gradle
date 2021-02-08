@@ -27,9 +27,9 @@ pipeline {
                 withGradle {
 //                    sh './gradlew pitest'
 //                    sh './gradlew clean pmdTest'
-//                    sh './gradlew clean check'
-                    sh './gradlew spotbugsMain'
-                    sh './gradlew spotbugsTest'
+                    sh './gradlew clean check'
+//                    sh './gradlew spotbugsMain'
+//                    sh './gradlew spotbugsTest'
                 }
             }
             post {
