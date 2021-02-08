@@ -1,36 +1,39 @@
 #!/usr/bin/env groovy
 pipeline {
     agent any
-    tools {
-        jdk 'openjdk-15.0.2'
-    }
     options {
         ansiColor('xterm')
     }
     stages {
-        stage('Build') {
-            steps {
-                withGradle {
-                    sh './gradlew assemble'
-                }
-            }
-            post {
-                success {
-                    archiveArtifacts artifacts: 'build/libs/*.jar'
-                }
-            }
-        }
         stage('Test') {
             steps {
-                withGradle {
-                    sh './gradlew test'
+                configFileProvider([configFile(fileId: 'gradle-properties-sonarqube', targetLocation: 'gradle.properties')]) {
+                    withGradle {
+                        sh './gradlew sonarqube'
+                    }
                 }
+
             }
+/*
             post {
                 always {
-                    junit 'build/test-results/test/TEST-*.xml'
+//                    archiveArtifacts artifacts: 'build/reports/pitest/mutations.xml'
+//                    junit 'build/reports/pitest/mutations.xml'
+                    recordIssues (
+//                        enabledForFailure: true, 
+                        tool: spotBugs(pattern: 'build/reports/spotbugs/*.xml')
+                    )
+                    recordIssues (
+                        enabledForFailure: true, 
+                        tool: pmdParser(pattern: 'build/reports/pmd/*.xml')
+                    )
+
                 }
             }
+*/
+
+
+
         }       
     }
 }
