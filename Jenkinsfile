@@ -9,7 +9,7 @@ pipeline {
             steps {
                 configFileProvider([configFile(fileId: 'gradle-properties-sonarqube', targetLocation: 'gradle.properties')]) {
                     withGradle {
-//                        sh './gradlew sonarqube'
+                        sh './gradlew sonarqube'
                         sh './gradlew clean check'
                     }
                 }
