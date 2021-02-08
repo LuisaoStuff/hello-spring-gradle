@@ -7,12 +7,18 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+/*
                 configFileProvider([configFile(fileId: 'gradle-properties-sonarqube', targetLocation: 'gradle.properties')]) {
                     withGradle {
                         sh './gradlew sonarqube'
                         sh './gradlew clean check'
-                    }
+                   }
                 }
+*/
+		withSonarQubeEnv(credentialsId: 'a821f47c-66dd-4888-859c-90d41bcf26b6',installationName: 'Sonarqube') {
+                        sh './gradlew sonarqube'
+                        sh './gradlew clean check'
+		}
 
             }
 /*
