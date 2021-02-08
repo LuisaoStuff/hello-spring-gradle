@@ -27,7 +27,7 @@ pipeline {
                 withGradle {
 //                    sh './gradlew pitest'
 //                    sh './gradlew clean pmdTest'
-                    sh './gradlew check'
+                    sh './gradlew clean check'
 
                 }
             }
