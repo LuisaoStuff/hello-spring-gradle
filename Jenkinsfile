@@ -7,14 +7,14 @@ pipeline {
     stages {
 	stage('OWASP') {
             steps {
-//            withGradle {
-//                sh './gradlew dependencyCheckAnalyze'
-//            }
-                dependencycheck additionalArguments: '--scan ./ --disableYarnAudit --out build/reports/ --format XML', odcInstallation: 'Dependency Checker'
+            withGradle {
+                sh './gradlew dependencyCheckAnalyze'
+            }
+//                dependencycheck additionalArguments: '--scan ./ --disableYarnAudit --out build/reports/ --format XML', odcInstallation: 'Dependency Checker'
             }
             post {
                 always {
-                    dependencyCheckPublisher pattern: 'build/reports/*.xml'
+                    dependencyCheckPublisher pattern: 'build/reports/dependency-check-report.xml'
                 }
             }
         }
