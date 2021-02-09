@@ -10,7 +10,8 @@ pipeline {
 //            withGradle {
 //                sh './gradlew dependencyCheckAnalyze'
 //            }
-                dependencycheck additionalArguments: '--scan . --out build/reports/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
+//                dependencycheck additionalArguments: '--scan . --out build/reports/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
+                dependencycheck additionalArguments: '--out build/reports/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
             }
             post {
                 always {
