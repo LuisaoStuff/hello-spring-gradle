@@ -7,16 +7,18 @@ pipeline {
     stages {
 	stage('OWASP') {
             steps {
-//                sh 'mkdir build/owasp'
-                dependencycheck additionalArguments: '--scan ./ --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
+            withGradlew {
+                sh './gradlew dependencyCheckAnalyze'
+            }
+//                dependencycheck additionalArguments: '--scan ./ --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
             }
             post {
                 always {
-                    dependencyCheckPublisher pattern: 'build/owasp/dependency-check-report.xml'
+                    dependencyCheckPublisher pattern: 'build/reports/dependency-check-report.xml'
                 }
             }
         }
-/*
+
         stage('QA') {
             steps {
                 withGradle {
@@ -33,6 +35,6 @@ pipeline {
                 }
             }       
         }
-*/
+
     }
 }
