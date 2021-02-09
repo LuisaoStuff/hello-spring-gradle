@@ -7,7 +7,7 @@ pipeline {
     stages {
 	stage('OWASP') {
             steps {
-                sh 'mkdir build/owasp'
+//                sh 'mkdir build/owasp'
                 dependencycheck additionalArguments: '--scan ./ --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
             }
             post {
