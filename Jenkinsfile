@@ -8,7 +8,7 @@ pipeline {
 	stage('OWASP') {
             steps {
                 sh 'mkdir build/owasp'
-                dependencycheck additionalArguments: '--project plastinforme --scan ./ --data /home/jenkins/security/owasp-nvd/ --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
+                dependencycheck additionalArguments: '--scan ./ --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
             }
             post {
                 always {
