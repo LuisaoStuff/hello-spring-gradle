@@ -6,8 +6,21 @@ plugins {
 	id 'pmd'
 	id 'com.github.spotbugs' version '4.2.1'
         id "org.sonarqube" version "3.1.1"
+	id 'jacoco'
+	id "org.owasp.dependencycheck" version "6.1.0"
 }
 
+jacoco {
+    toolVersion = "0.8.6"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        xml.destination file("build/jacoco")
+    }
+}
 
 spotbugs {
   toolVersion = '4.2.1'
