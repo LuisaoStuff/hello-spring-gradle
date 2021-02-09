@@ -16,6 +16,7 @@ pipeline {
                 }
             }
         }
+/*
         stage('QA') {
             steps {
                 withGradle {
@@ -32,5 +33,6 @@ pipeline {
                 }
             }       
         }
+*/
     }
 }
