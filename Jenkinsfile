@@ -7,7 +7,7 @@ pipeline {
     stages {
 	stage('OWASP') {
             steps {
-            withGradlew {
+            withGradle {
                 sh './gradlew dependencyCheckAnalyze'
             }
 //                dependencycheck additionalArguments: '--scan ./ --out build/owasp/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
