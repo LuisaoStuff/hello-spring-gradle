@@ -10,8 +10,7 @@ pipeline {
 //            withGradle {
 //                sh './gradlew dependencyCheckAnalyze'
 //            }
-//                dependencycheck additionalArguments: '--scan . --out build/reports/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
-                dependencycheck additionalArguments: '--out build/reports/dependency-check-report.xml --format XML', odcInstallation: 'Dependency Checker'
+                dependencycheck additionalArguments: '--scan . --out build/reports/dependency-check-report.xml --disableYarnAudit --format XML', odcInstallation: 'Dependency Checker'
             }
             post {
                 always {
@@ -19,11 +18,11 @@ pipeline {
                 }
             }
         }
-
+/*
         stage('QA') {
             steps {
                 withGradle {
-                    sh './gradlew check'
+                    sh './gradlew clean check'
                 }
                 withSonarQubeEnv(credentialsId: 'a821f47c-66dd-4888-859c-90d41bcf26b6', installationName: 'Sonarqube') {
                     sh './gradlew sonarqube'
@@ -36,6 +35,6 @@ pipeline {
                 }
             }       
         }
-
+*/
     }
 }
