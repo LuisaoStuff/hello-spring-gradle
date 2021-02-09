@@ -10,7 +10,7 @@ pipeline {
 //            withGradle {
 //                sh './gradlew dependencyCheckAnalyze'
 //            }
-                dependencycheck additionalArguments: '--scan . --disableYarnAudit --out build/reports/ --format XML', odcInstallation: 'Dependency Checker'
+                dependencycheck additionalArguments: '--scan ./ --disableYarnAudit --out build/reports/ --format XML', odcInstallation: 'Dependency Checker'
             }
             post {
                 always {
