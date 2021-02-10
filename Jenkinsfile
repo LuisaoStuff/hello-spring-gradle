@@ -5,12 +5,12 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
+/*
 	stage('OWASP') {
             steps {
-            withGradle {
-                sh './gradlew dependencyCheckAnalyze'
-            }
-//                dependencycheck additionalArguments: '--disableYarnAudit --out build/reports/ --format XML', odcInstallation: 'Dependency Checker'
+                withGradle {
+                    sh './gradlew dependencyCheckAnalyze'
+                }
             }
             post {
                 always {
@@ -35,6 +35,7 @@ pipeline {
                 }
             }       
         }
+*/
         stage('Publish') {
             steps {
                 withGradle {
