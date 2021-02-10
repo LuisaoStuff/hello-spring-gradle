@@ -23,7 +23,7 @@ publishing {
                 name "jet-brains-idea"
                 credentials(HttpHeaderCredentials) {
                     name = 'Private-Token'
-                    value = System.getEnv('TOKEN')
+                    value = System.getenv('TOKEN')
                 }
                 authentication {
                     header(HttpHeaderAuthentication)
