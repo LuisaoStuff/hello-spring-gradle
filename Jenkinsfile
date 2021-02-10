@@ -39,8 +39,8 @@ pipeline {
         stage('Publish') {
             steps {
                 withGradle {
-                    withCredentials([string(credentialsId: 'gitlabPrivateToken')]) {
-                        sh './gradlew publish'
+                    withCredentials([string(credentialsId: 'gitlabPrivateToken', variable: 'TOKEN')]) {
+                        sh './gradlew -PTOKEN=$(TOKEN) publish'
                     }
                 }
             }
