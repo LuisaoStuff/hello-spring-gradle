@@ -22,7 +22,10 @@ publishing {
         }
         repositories {
             maven {
-                url "http://localhost:9082/repository/snapshots/"
+//		ApacheArchiva
+//                url "http://localhost:9082/repository/snapshots/"
+//		Nexus
+                url "http://localhost:9084/repository/maven-snapshots/"
                 credentials {
                     username System.getenv('username')
                     password System.getenv('password')

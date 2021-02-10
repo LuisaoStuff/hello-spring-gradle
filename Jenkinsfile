@@ -39,7 +39,10 @@ pipeline {
         stage('Publish') {
             steps {
                 withGradle {
-                    withCredentials([usernamePassword(credentialsId: 'ApacheArchiva', usernameVariable: 'username', passwordVariable: 'password')]) {
+//                  Apache Archiva
+//                    withCredentials([usernamePassword(credentialsId: 'ApacheArchiva', usernameVariable: 'username', passwordVariable: 'password')]) {
+//		    Nexus
+                    withCredentials([usernamePassword(credentialsId: 'NexusRepositories', usernameVariable: 'username', passwordVariable: 'password')]) {
                         sh './gradlew publish'                    }
                 }
             }
