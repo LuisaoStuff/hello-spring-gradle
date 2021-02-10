@@ -12,7 +12,7 @@ pipeline {
 	stage('OWASP') {
             steps {
                 withGradle {
-                    sh './gradlew dependencyCheckAnalyze'
+                    sh './gradlew ${VERSION} dependencyCheckAnalyze'
                 }
             }
             post {
@@ -25,10 +25,10 @@ pipeline {
         stage('QA') {
             steps {
                 withGradle {
-                    sh './gradlew clean check'
+                    sh './gradlew ${VERSION} clean check'
                 }
                 withSonarQubeEnv(credentialsId: 'a821f47c-66dd-4888-859c-90d41bcf26b6', installationName: 'Sonarqube') {
-                    sh './gradlew sonarqube'
+                    sh './gradlew ${VERSION} sonarqube'
                 }
             }
             post {
