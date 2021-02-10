@@ -4,15 +4,12 @@ pipeline {
     options {
         ansiColor('xterm')
     }
-    environment {
-        VERSION = '0.${currentBuild.number}-SNAPSHOT'
-    }
     stages {
 
 	stage('OWASP') {
             steps {
                 withGradle {
-                    sh './gradlew -PversionNumber=${VERSION} dependencyCheckAnalyze'
+                    sh './gradlew dependencyCheckAnalyze'
                 }
             }
             post {
@@ -25,10 +22,10 @@ pipeline {
         stage('QA') {
             steps {
                 withGradle {
-                    sh './gradlew -PversionNumber=${VERSION} clean check'
+                    sh './gradlew clean check'
                 }
                 withSonarQubeEnv(credentialsId: 'a821f47c-66dd-4888-859c-90d41bcf26b6', installationName: 'Sonarqube') {
-                    sh './gradlew -PversionNumber=${VERSION} sonarqube'
+                    sh './gradlew sonarqube'
                 }
             }
             post {
@@ -43,7 +40,7 @@ pipeline {
             steps {
                 withGradle {
                     withCredentials([string(credentialsId: 'gitlabPrivateToken', variable: 'TOKEN')]) {
-                        sh './gradlew -PTOKEN=$TOKEN -PversionNumber=${VERSION} publish'
+                        sh './gradlew publish'
                     }
                 }
             }

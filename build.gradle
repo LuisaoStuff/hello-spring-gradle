@@ -15,7 +15,7 @@ publishing {
         publications {
                 bootJava(MavenPublication) {
                         artifact bootJar
-			version = versionNumber
+			version = System.getenv('BUILD_TAG')
 			// groupId = 'com.sinensia'
 			// artifactId = 'helloSpringTesting'
                 }
