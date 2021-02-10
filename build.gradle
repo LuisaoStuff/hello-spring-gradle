@@ -22,14 +22,10 @@ publishing {
         }
         repositories {
             maven {
-                url "http://10.250.5.20:8929/api/v4/projects/38/packages/maven"
-                name "jet-brains-idea"
-                credentials(HttpHeaderCredentials) {
-                    name = 'Private-Token'
-                    value = System.getenv('TOKEN')
-                }
-                authentication {
-                    header(HttpHeaderAuthentication)
+                url "http://localhost:9082/repository/snapshots/"
+                credentials {
+                    username admin
+                    password System.getenv('password')
                 }
             }
         }
