@@ -5,7 +5,7 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
-/*
+
 	stage('OWASP') {
             steps {
                 withGradle {
@@ -35,7 +35,7 @@ pipeline {
                 }
             }       
         }
-*/
+
         stage('Publish') {
             steps {
                 withGradle {
