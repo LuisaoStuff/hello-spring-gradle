@@ -40,7 +40,7 @@ pipeline {
             steps {
                 withGradle {
                     withCredentials([string(credentialsId: 'gitlabPrivateToken', variable: 'TOKEN')]) {
-                        sh './gradlew -PTOKEN=$(TOKEN) publish'
+                        sh './gradlew -PTOKEN=$TOKEN publish'
                     }
                 }
             }
