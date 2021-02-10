@@ -4,6 +4,9 @@ pipeline {
     options {
         ansiColor('xterm')
     }
+    environment {
+        VERSION = '0.${currentBuild.number}-SNAPSHOT'
+    }
     stages {
 
 	stage('OWASP') {
@@ -40,7 +43,7 @@ pipeline {
             steps {
                 withGradle {
                     withCredentials([string(credentialsId: 'gitlabPrivateToken', variable: 'TOKEN')]) {
-                        sh './gradlew -PTOKEN=$TOKEN -PversionNumber=0.${currentBuild.number}-SNAPSHOT publish'
+                        sh './gradlew -PTOKEN=$TOKEN -PversionNumber=${VERSION} publish'
                     }
                 }
             }
